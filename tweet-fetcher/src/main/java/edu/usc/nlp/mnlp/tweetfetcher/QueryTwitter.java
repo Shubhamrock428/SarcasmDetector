@@ -1,4 +1,4 @@
-package edu.hacktech.namo.fetcher.query;
+package edu.usc.nlp.mnlp.tweetfetcher;
 
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
