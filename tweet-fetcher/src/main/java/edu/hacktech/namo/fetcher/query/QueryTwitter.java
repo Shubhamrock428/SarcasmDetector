@@ -1,7 +1,10 @@
 package edu.hacktech.namo.fetcher.query;
 
 import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.List;
+
+import com.google.gson.Gson;
 
 import twitter4j.Paging;
 import twitter4j.Query;
@@ -47,6 +50,13 @@ public class QueryTwitter {
 		return timeLine;
 	}
 
+	/**
+	 * Calls twitter.search() and search twitter in batches of 100 for given keyword keyword.<br/>
+	 * It sleeps for some time if API hits are exhausted.
+	 * @param keyword - search keyword
+	 * @param maxId - should be negative to search from start
+	 * @throws Exception
+	 */
 	public void getTweetsUsingSearch(String keyword, long maxId) throws Exception {
 		QueryTwitter query = new QueryTwitter();
 		Query q = new Query(keyword);
@@ -79,6 +89,10 @@ public class QueryTwitter {
 				} */
 				// print(s.user.id + "::" + s.createdAt + " :: " + s.text)
 				query.write(keyword+"-search" + ".json", TwitterObjectFactory.getRawJSON(s), true);
+				Gson gson = new Gson();
+				// WRITE ACTUAL TWEET
+				//System.out.println(gson.toJson(s.getText()));
+				query.write(keyword+"-search" + ".text", gson.toJson(s.getText()), true);
 				count++;
 			}
 			
@@ -100,14 +114,21 @@ public class QueryTwitter {
 		}
 
 	}
-
+	/**
+	 * Writes in UTF-8 to a file
+	 * @param fileName - Name of file
+	 * @param content - content to be written
+	 * @param isAppend - append or overwrite file
+	 * @throws Exception
+	 */
 	public void write(String fileName, String content, boolean isAppend) throws Exception {
 		content+="\n";
 		FileOutputStream out = new FileOutputStream(fileName, isAppend);
-		out.write(content.getBytes());
-		out.write("\n".getBytes());
-		out.close();
-		//System.out.println("Written " + fileName);
+		OutputStreamWriter outWriter = new OutputStreamWriter(out, "UTF-8");
+		outWriter.write(content);
+		outWriter.write("\n");
+		outWriter.close();
+		System.out.println("Written " + fileName);
 	}
 	
 	public static void main(String[] args) throws Exception {
