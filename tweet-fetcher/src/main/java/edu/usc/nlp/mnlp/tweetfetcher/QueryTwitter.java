@@ -61,8 +61,8 @@ public class QueryTwitter {
 		QueryTwitter query = new QueryTwitter();
 		Query q = new Query(keyword);
 		q.setCount(100);
-		q.setSinceId(0);
-		q.setResultType(Query.ResultType.popular);
+		//q.setSinceId(0);
+		//q.setResultType(Query.ResultType.popular);
 		if (maxId >= 0) {
 			q.setMaxId(maxId);
 		}
@@ -73,26 +73,17 @@ public class QueryTwitter {
 			QueryResult result = twitter.search(q);
 			List<Status> statuses = result.getTweets();
 			if (statuses == null || statuses.isEmpty()) {
-				System.out.println("End");
+				System.out.println("Not found");
 				break;
+				//statuses = new ArrayList<Status>();
 			}
-			// result.getRateLimitStatus();
 			
 			for (Status s : statuses) {
-				
-/*				if (s.getUser().getScreenName().trim().equals(tweeple)) {
-					writeCount++;
-					query.write(tweeple+"-search" + ".json", TwitterObjectFactory.getRawJSON(s), true);
-				} else {
-					System.err.println(s.getUser().getScreenName());
-					System.out.println(TwitterObjectFactory.getRawJSON(s));
-				} */
-				// print(s.user.id + "::" + s.createdAt + " :: " + s.text)
 				query.write(keyword+"-search" + ".json", TwitterObjectFactory.getRawJSON(s), true);
 				Gson gson = new Gson();
 				// WRITE ACTUAL TWEET
 				//System.out.println(gson.toJson(s.getText()));
-				query.write(keyword+"-search" + ".text", gson.toJson(s.getText()), true);
+				query.write(keyword+"-search" + ".txt", gson.toJson(s.getText()), true);
 				count++;
 			}
 			
@@ -101,15 +92,19 @@ public class QueryTwitter {
 			System.out.println("Remaining " + rLimit.getRemaining() + ", resets in " + rLimit.getResetTimeInSeconds() + " Reset: "
 					+ rLimit.getSecondsUntilReset());
 
+			
 			if (rLimit.getRemaining() < 1) {
 				System.out.println("going to sleep for " + rLimit.getSecondsUntilReset());
-				Thread.sleep(1000 * (rLimit.getSecondsUntilReset() + 1));
+				Thread.sleep(1000 * (rLimit.getSecondsUntilReset() + 10));
 			}
-
-			q.setMaxId(statuses.get(statuses.size() - 1).getId());
+			
+			if (!statuses.isEmpty()){
+				maxId = statuses.get(statuses.size() - 1).getId() -1 ;
+			}else{
+				maxId += 100;
+			}
+			q.setMaxId(maxId);
 			q.setCount(100);
-			q.setSinceId(0);
-			q.setResultType(Query.ResultType.recent);
 			Thread.sleep(2000);
 		}
 
@@ -128,13 +123,13 @@ public class QueryTwitter {
 		outWriter.write(content);
 		outWriter.write("\n");
 		outWriter.close();
-		System.out.println("Written " + fileName);
+	//	System.out.println("Written " + fileName);
 	}
 	
 	public static void main(String[] args) throws Exception {
 		QueryTwitter query = new QueryTwitter();
 
-		String searchQuery = "lang:hi";
+		String searchQuery = "#खांग्रेस lang:hi"; //717296294172037121l
 
 		query.getTweetsUsingSearch(searchQuery, -1);
 
