@@ -133,7 +133,7 @@ public class QueryTwitter {
 	public static void main(String[] args) throws Exception {
 		QueryTwitter query = new QueryTwitter();
 
-		String searchQuery = "#ठोकोताली lang:hi"; //717296294172037121l
+		String searchQuery = "#सिद्धू lang:hi"; //717296294172037121l
 
 		query.getTweetsUsingSearch(searchQuery, -1);
 
