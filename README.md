@@ -1,6 +1,6 @@
 # Team-MissionNLP
 CSCI-544 Final Project
 Process-tweet cleans the tweet
-	Remove Tweet Handles
-	Remove URLS
-	Remove #sarcasm
+1. Remove Tweet Handles
+2. Remove URLS
+3. Remove #sarcasm
