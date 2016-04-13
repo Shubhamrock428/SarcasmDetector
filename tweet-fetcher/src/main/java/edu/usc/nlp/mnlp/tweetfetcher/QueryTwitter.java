@@ -59,6 +59,10 @@ public class QueryTwitter {
 	 */
 	public void getTweetsUsingSearch(String keyword, long maxId) throws Exception {
 		QueryTwitter query = new QueryTwitter();
+		//INIT EMPTY FILES 
+		query.write(keyword+"-search" + ".json", "", false);
+		query.write(keyword+"-search" + ".txt", "", false);
+		
 		Query q = new Query(keyword);
 		q.setCount(100);
 		//q.setSinceId(0);
