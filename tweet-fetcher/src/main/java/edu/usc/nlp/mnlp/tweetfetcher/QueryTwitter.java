@@ -59,6 +59,10 @@ public class QueryTwitter {
 	 */
 	public void getTweetsUsingSearch(String keyword, long maxId) throws Exception {
 		QueryTwitter query = new QueryTwitter();
+		//INIT EMPTY FILES 
+		query.write(keyword+"-search" + ".json", "", false);
+		query.write(keyword+"-search" + ".txt", "", false);
+		
 		Query q = new Query(keyword);
 		q.setCount(100);
 		//q.setSinceId(0);
@@ -129,7 +133,7 @@ public class QueryTwitter {
 	public static void main(String[] args) throws Exception {
 		QueryTwitter query = new QueryTwitter();
 
-		String searchQuery = "#खांग्रेस lang:hi"; //717296294172037121l
+		String searchQuery = "#सिद्धू lang:hi"; //717296294172037121l
 
 		query.getTweetsUsingSearch(searchQuery, -1);
 
