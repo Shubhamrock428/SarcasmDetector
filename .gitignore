@@ -2,9 +2,6 @@
 .classpath
 target
 .settings
-
 *.class
-
 *.java~
-
-tweetDivider/.pydevproject
+.pydevproject
