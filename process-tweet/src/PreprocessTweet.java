@@ -94,6 +94,7 @@ public class PreprocessTweet {
 		
 		//tweet=tweet.replaceAll("#?sarcasm|#?sarcastic", "");  
 		tweet=tweet.replaceAll("#[A-Za-z]+", "");
+		tweet=tweet.replaceAll("#?", "");
 		tweet=tweet.replaceAll("[0-9]", "");
 		tweet=tweet.replaceAll("\\(|\\)|\\[|\\]", "");
 		tweet=tweet.replaceAll("\\/", "");
@@ -108,10 +109,10 @@ public class PreprocessTweet {
 		tweet=tweet.replaceAll("\\\\","" );
 		tweet=tweet.replaceAll("\"", "");
 		/*To remove Stop words : */
-		/*
+		
 		 for(String s:stopwords)
 			tweet.replaceAll("\\s*\\b"+s+"\\b\\s*","");
-		 */
+		 
 		
 		return tweet;
 	}
