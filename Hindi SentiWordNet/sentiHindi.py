@@ -1,6 +1,6 @@
 import json,string,io,codecs
 model={}
-
+model2={}
 with io.open("HSWN_WN.txt",encoding="utf-8") as f:
 	content = f.readlines()
 
@@ -12,9 +12,17 @@ for line in content:
 	#print synonyms
 	for eachWord in synonyms:
 		if eachWord not in model:
-			model[eachWord]=[pscore,nscore]
+			check=abs(pscore-nscore)
+			if check>=0.1:	#can change
+				if pscore>nscore:
+					tag=1	
+				else:
+					tag=-1
+			else:
+				tag=0
+			model[eachWord]=tag
 
-with codecs.open("sentiment_json.txt","w","utf-8") as f:
+with codecs.open("sentiment_model.txt","w","utf-8") as f:
 	json.dump(model,f)
 
 
