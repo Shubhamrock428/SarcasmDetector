@@ -22,28 +22,59 @@ import java.util.StringTokenizer;
 public class PreprocessTweet {
 	
 	static HashSet<String> stopwords = new HashSet<String>();
-	public static void main(String[] args) {
-		PreprocessTweet pt = new PreprocessTweet();
-		String filename="/home/swanand/nlpProject/Team-MissionNLP/tweet-fetcher/#मज़ाक lang:hi-search.txt";
+	
+	static void makeProcessedFile(String filename,String output)
+	{
 		PrintWriter pw=null;
-		FileReader[] f = new FileReader[2];
-		try{
-			f[0] = new FileReader(new File("C:/Users/Rajvi_M/Desktop/Hindi Stowords/ranknl.txt"));
-			f[1]= new FileReader(new File("C:/Users/Rajvi_M/Desktop/Hindi Stowords/stopwords_hi.txt"));
-			getStopwords(f);
-			pw=new PrintWriter("Processed text Tweets.txt");
+		try
+		{
+			PreprocessTweet pt = new PreprocessTweet();
+			
+			pw=new PrintWriter(output);
 			ArrayList<String> input =pt.readText(filename);
 			for(String tweet:input){
+				
 				tweet=pt.process(tweet);
 				pw.println(tweet);
 			}
 		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			pw.close();
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	public static void main(String[] args) 
+	{
+		PreprocessTweet pt = new PreprocessTweet();
+		String sarcasticFilePath = "/Users/sidhesh/Documents/Github/Team-MissionNLP/tweet-fetcher/Sarcastic/sarcasticTweets.txt";
+		String nonSarcasticFilePath = "/Users/sidhesh/Documents/Github/Team-MissionNLP/tweet-fetcher/Non-Sarcastic/nonSarcasticTweets.txt";
+		String devPath = "/Users/sidhesh/Documents/Github/Team-MissionNLP/tweet-fetcher/Non-Sarcastic/dev.txt";
+		String filename="/Users/sidhesh/Documents/workspace/process-tweet/#मज़ाक lang:hi-search.txt";
+		
+		FileReader[] f = new FileReader[2];
+		try{
+			f[0] = new FileReader(new File("ranknl.txt"));
+			f[1]= new FileReader(new File("stopwords_hi.txt"));
+			getStopwords(f);
+			makeProcessedFile(sarcasticFilePath,"sarcastic_temp.txt");
+			makeProcessedFile(nonSarcasticFilePath,"nonsarcastic_temp.txt");
+			makeProcessedFile(devPath,"dev_temp.txt");
+		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		finally{
-			pw.close();
-		}
+		
 		
 	}
 
@@ -51,6 +82,7 @@ public class PreprocessTweet {
 	private String process(String tweet) {
 		// TODO Auto-generated method stub
 		tweet=tweet.trim();
+		
 		tweet = tweet.replaceAll("S?@\\S+\\s?", "");
 		tweet= tweet.replaceAll("www?.\\S+\\s?", "");
 		tweet= tweet.replaceAll("https?(://\\S+\\s?)?", "");
@@ -58,7 +90,23 @@ public class PreprocessTweet {
 		 	tweet.replaceAll("\\s*\\b#sarcasm\\b\\s*","");
 		 	tweet.replaceAll("\\s*\\b#sarcastic\\b\\s*","");
 		 */
-		tweet=tweet.replaceAll("#?sarcasm|#?sarcastic", "");  
+		
+		
+		//tweet=tweet.replaceAll("#?sarcasm|#?sarcastic", "");  
+		tweet=tweet.replaceAll("#[A-Za-z]+", "");
+		tweet=tweet.replaceAll("[0-9]", "");
+		tweet=tweet.replaceAll("\\(|\\)|\\[|\\]", "");
+		tweet=tweet.replaceAll("\\/", "");
+		//tweet=tweet.replaceAll("\\...", "");
+		tweet=tweet.replaceAll("_", "");
+		tweet=tweet.replaceAll("\\*", "");
+		tweet=tweet.replaceAll("\\!|\\?|\\;|\\,|\\:|\\.", "");
+		tweet=tweet.replaceAll("|", "");
+		//tweet=tweet.replaceAll("[^\\x00-\\x7f-\\x80-\\xad]", ""); 
+		tweet=tweet.replaceAll("[\ud83c\udc00-\ud83c\udfff]|[\ud83d\udc00-\ud83d\udfff]|[\u2600-\u27ff]", "");
+		tweet=tweet.replaceAll("[a-zA-Z]+", "");
+		tweet=tweet.replaceAll("\\\\","" );
+		tweet=tweet.replaceAll("\"", "");
 		/*To remove Stop words : */
 		/*
 		 for(String s:stopwords)
