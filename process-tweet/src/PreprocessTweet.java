@@ -60,7 +60,8 @@ public class PreprocessTweet {
 		String sarcasticFilePath = "/Users/sidhesh/Documents/Github/Team-MissionNLP/tweet-fetcher/Sarcastic/sarcasticTweets.txt";
 		String nonSarcasticFilePath = "/Users/sidhesh/Documents/Github/Team-MissionNLP/tweet-fetcher/Non-Sarcastic/nonSarcasticTweets.txt";
 		String devPath = "/Users/sidhesh/Documents/Github/Team-MissionNLP/tweet-fetcher/Non-Sarcastic/dev.txt";
-		String filename="/Users/sidhesh/Documents/workspace/process-tweet/#मज़ाक lang:hi-search.txt";
+		String filename="/Users/sidhesh/Documents/workspace/process-tweet/test.txt";
+		String testoutput="/Users/sidhesh/Documents/workspace/process-tweet/testop.txt";
 		
 		FileReader[] f = new FileReader[2];
 		try{
@@ -70,6 +71,7 @@ public class PreprocessTweet {
 			makeProcessedFile(sarcasticFilePath,"sarcastic_temp.txt");
 			makeProcessedFile(nonSarcasticFilePath,"nonsarcastic_temp.txt");
 			makeProcessedFile(devPath,"dev_temp.txt");
+			//makeProcessedFile(filename,testoutput);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -94,7 +96,7 @@ public class PreprocessTweet {
 		
 		//tweet=tweet.replaceAll("#?sarcasm|#?sarcastic", "");  
 		tweet=tweet.replaceAll("#[A-Za-z]+", "");
-		tweet=tweet.replaceAll("#?", "");
+		tweet=tweet.replaceAll("#[^ ]+", "");
 		tweet=tweet.replaceAll("[0-9]", "");
 		tweet=tweet.replaceAll("\\(|\\)|\\[|\\]", "");
 		tweet=tweet.replaceAll("\\/", "");
