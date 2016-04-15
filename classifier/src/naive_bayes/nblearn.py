@@ -58,7 +58,9 @@ def writeModel():
 	model[word]=classList
     #print model    
     with codecs.open('nbmodel.txt','w',encoding='utf8') as handle:
-      	data={'MODEL':model}
+	s1=len(sarcasmDict)
+	s2=len(nonSarcasmDict)
+	data={'MODEL':model,'SARCASM_LENGTH':s1,'NONSARCASM_LENGTH':s2}
 	json.dump(data, handle)
 
     return
@@ -66,9 +68,11 @@ def writeModel():
 content=fileRead('/home/swanand/nlpProject/Naive Bayes/data/nonsarcastic_proc.txt')
 trainNB(content,0)
 content=fileRead('/home/swanand/nlpProject/Naive Bayes/data/sarcastic_proc.txt')
-print str(len(vocab))
-print str(sarcasm)
 trainNB(content,1)
+print 'Vocab Length:'+ str(len(vocab))
+print 'Sarcasm Vocab Length:' +str(len(sarcasmDict))
+print 'Non Sarcasm Length:' +str(len(nonSarcasmDict))
+print str(sarcasm)
 print str(nonSarcasm)
 writeModel()
 

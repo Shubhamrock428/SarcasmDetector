@@ -24,20 +24,20 @@ def NBtest(content,f1,f2):
 	score2=math.log(0.56)
     	output.write(s)
 	tweet=s.split()
+	c=0
 	for word in tweet:
 		word = unicode(word, "utf-8")		
 		if word in model:
-			#print 'found: ',word
-        		score1+=math.log(model[word][0])
+			score1+=math.log(model[word][0])
                         score2+=math.log(model[word][1])
+		else:
+			score1+=math.log(1.0/sarcasm_count)
+			score2+=math.log(1.0/nonsarcasm_count)
         if score1> score2:
-		print 'inside'
-		#print s,'SARCASTIC'
-        	output.write('/SARCASTIC')
+		output.write('/SARCASTIC')
 		output2.write('1')
         else:
-		#print 'NON_SARCASTIC'
-    		output.write('/NON_SARCASTIC')
+		output.write('/NON_SARCASTIC')
 		output2.write('0')
         output.write('\n')
 	output2.write('\n')
@@ -47,6 +47,10 @@ def NBtest(content,f1,f2):
 
 data=readModel()
 model=data['MODEL']
+sarcasm_count=data['SARCASM_LENGTH']
+nonsarcasm_count=data['NONSARCASM_LENGTH']
+print sarcasm_count
+print nonsarcasm_count
 content=fileRead('/home/swanand/nlpProject/Naive Bayes/data/dev_sarcastic_proc.txt')
 f1="/home/swanand/nlpProject/Naive Bayes/data/outputs/nboutput_sarcastic.txt"
 f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/nbtags_sarcastic.txt"
