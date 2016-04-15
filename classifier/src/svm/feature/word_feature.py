@@ -2,6 +2,9 @@ from collections import Counter
 
 from sklearn import svm
 from sklearn.feature_extraction import *
+from sklearn.externals import joblib
+ 
+
 
 test_data = ""
 
@@ -73,8 +76,11 @@ clf = svm.SVC()
 # clf = SGDClassifier(loss="hinge", penalty="l2")
 
 features_arr, observations, feature_names = getTrainingVectors() 
-print clf.fit(features_arr, observations)
+clf.fit(features_arr, observations)
 
+joblib.dump(clf, '../predict/word_feature/word_feature.pkl')
+
+# print s
 # This list of features is needed to create a vector for prediction  
 # print vectorize.get_feature_names()
 
