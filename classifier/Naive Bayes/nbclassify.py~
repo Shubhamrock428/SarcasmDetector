@@ -48,10 +48,10 @@ def NBtest(content,f1,f2):
 data=readModel()
 model=data['MODEL']
 content=fileRead('/home/swanand/nlpProject/Naive Bayes/data/dev_sarcastic_proc.txt')
-f1="/home/swanand/nlpProject/Naive Bayes/data/outputs/nboutput_sarcastic.txt"
-f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/nbtags_sarcastic.txt"
+f1="/home/swanand/nlpProject/Naive Bayes/data/nboutput_sarcastic.txt"
+f2="/home/swanand/nlpProject/Naive Bayes/data/nbtags_sarcastic.txt"
 NBtest(content,f1,f2)
 content=fileRead('/home/swanand/nlpProject/Naive Bayes/data/dev_nonsarcastic_proc.txt')
-f1="/home/swanand/nlpProject/Naive Bayes/data/outputs/nboutput_nonsarcastic.txt"
-f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/nbtags_nonsarcastic.txt"
+f1="/home/swanand/nlpProject/Naive Bayes/data/nboutput_nonsarcastic.txt"
+f2="/home/swanand/nlpProject/Naive Bayes/data/nbtags_nonsarcastic.txt"
 NBtest(content,f1,f2)
