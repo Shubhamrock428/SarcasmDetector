@@ -17,7 +17,7 @@ def createPredictionVector(feature_names, test_data):
     return vec_arr
     
 
-def getTrainingVectors (sarcastic_corpus="sarcastic.txt", non_sarcastic_corpus="non_sarcastic.txt"):
+def getTrainingVectors (sarcastic_corpus="../sarcastic.txt", non_sarcastic_corpus="../non_sarcastic.txt"):
     global test_data
     # Array of dicts. dicts have count of words
     word_counts = []
