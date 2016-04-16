@@ -18,18 +18,22 @@ with open("sentiment_model.txt","r") as f:
 with open("processedtweet.txt","r") as f:
     content = f.readlines()
 
-vector={}
-for line in content:
-    words = line.split()
-    list = chunkify(range(100),len(words))
-    for i in range(0,len(words)):
-        if words[i] in classifier:
-            value = int(classifier[words[i]])
-        else :
-            value = int(0)
-        fillSameValue(list[i],value)
-    vector.add(flattenListOfLists(list))
+#getSVMVector
+def getSVMVector(corpus,classifier):
+    vector={}
+    for line in corpus:
+        words = line.split()
+        list = chunkify(range(100),len(words))
+        for i in range(0,len(words)):
+            if words[i] in classifier:
+                value = int(classifier[words[i]])
+            else :
+                value = int(0)
+            fillSameValue(list[i],value)
+        vector.add(flattenListOfLists(list))
+    return vector
 
+vector = getSVMVector(content,classifier)
 
 
 
