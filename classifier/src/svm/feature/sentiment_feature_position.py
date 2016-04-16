@@ -1,4 +1,10 @@
-import json, io, itertools
+import json
+
+from sklearn import svm
+from sklearn.externals import joblib
+from sklearn.feature_extraction import *
+
+
 def flattenListOfLists(lst):
     result = []
     for sublist in lst:
@@ -8,34 +14,64 @@ def chunkify(lst,n):
     return [ lst[i::n] for i in xrange(n) ]
 
 def fillSameValue(lst,val):
-    lst = [1 for i in range(0,len(lst))]
+    lst = [val for i in range(0,len(lst))]
+    return lst
 
 #sentiment Tagged File
+classifier = {}
 with open("sentiment_model.txt","r") as f:
     classifier = json.load(f)
 
-
-
 #getSVMVector
-def getSVMVector(filename,classifier):
+def getSVMVector(filename):
+    global classifier
     #Input File
     with open(filename,"r") as f:
         content = f.readlines()
-    vector={}
+    vector=[]
     for line in content:
         words = line.split()
         list = chunkify(range(100),len(words))
         for i in range(0,len(words)):
-            if words[i] in classifier:
-                value = int(classifier[words[i]])
+            s=unicode(words[i],"utf-8")
+            if s in classifier:
+                value = classifier[s]
             else :
-                value = int(0)
-            fillSameValue(list[i],value)
-        vector.add(flattenListOfLists(list))
+                value = 0
+            list[i]=fillSameValue(list[i],value)
+        vector.append(flattenListOfLists(list))
     return vector
 
-filename=""
-vector = getSVMVector(filename,classifier)
+sarcastic_corpus="../sarcastic.txt"
+non_sarcastic_corpus="../non_sarcastic.txt"
+test_corpus="../test.txt"
+
+sar_features_arr = getSVMVector(sarcastic_corpus)
+print sar_features_arr
+observations = [1] * len(sar_features_arr)
+
+non_features_arr = getSVMVector(non_sarcastic_corpus)
+observations += [0] * len(non_features_arr)
+
+print len(sar_features_arr) + len(non_features_arr) 
+print len(observations)
 
 
+
+clf = svm.SVC()
+# clf = SGDClassifier(loss="hinge", penalty="l2")
+
+ 
+clf.fit(sar_features_arr + non_features_arr, observations)
+
+# joblib.dump(clf, '../predict/senti_feature_pos/senti_feature_pos.pkl')
+
+# print s
+# This list of features is needed to create a vector for prediction  
+# print vectorize.get_feature_names()
+
+# test createPredictionVector 
+test_vector = getSVMVector(test_corpus)
+
+print clf.predict(test_vector)
 
