@@ -14,14 +14,15 @@ def fillSameValue(lst,val):
 with open("sentiment_model.txt","r") as f:
     classifier = json.load(f)
 
-#Input File
-with open("processedtweet.txt","r") as f:
-    content = f.readlines()
+
 
 #getSVMVector
-def getSVMVector(corpus,classifier):
+def getSVMVector(filename,classifier):
+    #Input File
+    with open(filename,"r") as f:
+        content = f.readlines()
     vector={}
-    for line in corpus:
+    for line in content:
         words = line.split()
         list = chunkify(range(100),len(words))
         for i in range(0,len(words)):
@@ -33,7 +34,8 @@ def getSVMVector(corpus,classifier):
         vector.add(flattenListOfLists(list))
     return vector
 
-vector = getSVMVector(content,classifier)
+filename=""
+vector = getSVMVector(filename,classifier)
 
 
 
