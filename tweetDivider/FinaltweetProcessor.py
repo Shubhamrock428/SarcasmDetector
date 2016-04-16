@@ -13,7 +13,7 @@ def processfinally(oldpath,newpath):
     f1.close()
     os.remove(oldpath)
     
-processfinally("/Users/sidhesh/Documents/workspace/process-tweet/sarcastic_temp.txt", "/Users/sidhesh/Documents/workspace/process-tweet/sarcastic_temp1.txt")
-processfinally("/Users/sidhesh/Documents/workspace/process-tweet/nonsarcastic_temp.txt", "/Users/sidhesh/Documents/workspace/process-tweet/nonsarcastic_temp1.txt")
+processfinally("/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/sarcastic_temp.txt", "/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/sarcastic_temp1.txt")
+processfinally("/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/nonsarcastic_temp.txt", "/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/nonsarcastic_temp1.txt")
 
 
