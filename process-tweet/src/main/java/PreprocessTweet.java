@@ -11,7 +11,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import org.apache.lucene.analysis.hi.HindiStemmer;
 
 import edu.usc.nlp.mnlp.hindi.HindiUtil;
 
@@ -88,7 +87,7 @@ public class PreprocessTweet {
 		tweet = tweet.replaceAll("[a-zA-Z]+", "");
 		tweet = tweet.replaceAll("\\\\", "");
 		tweet = tweet.replaceAll("\"", "");
-		System.out.println(tweet);
+		//System.out.println(tweet);
 		StringBuffer sb = new StringBuffer();
 		for (String word : tweet.split(" ") )
 		{
@@ -96,7 +95,7 @@ public class PreprocessTweet {
 			sb.append(" ");
 		}
 		tweet = sb.toString();
-		System.out.println(tweet);
+		//System.out.println(tweet);
 		
 		return tweet;
 	}
