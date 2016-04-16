@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-
-
 public class PreprocessTweet {
 	
 	static HashSet<String> stopwords = new HashSet<String>();
@@ -49,11 +47,6 @@ public class PreprocessTweet {
 		
 	}
 	
-	
-	
-	
-	
-	
 	public static void main(String[] args) 
 	{
 		PreprocessTweet pt = new PreprocessTweet();
@@ -70,16 +63,13 @@ public class PreprocessTweet {
 			getStopwords(f);
 			makeProcessedFile(sarcasticFilePath,"sarcastic_temp.txt");
 			makeProcessedFile(nonSarcasticFilePath,"nonsarcastic_temp.txt");
-			makeProcessedFile(devPath,"dev_temp.txt");
+			//makeProcessedFile(devPath,"dev_temp.txt");
 			//makeProcessedFile(filename,testoutput);
 		}
 		catch(Exception e){
 			e.printStackTrace();
-		}
-		
-		
+		}	
 	}
-
 
 	private String process(String tweet) {
 		// TODO Auto-generated method stub
@@ -92,7 +82,6 @@ public class PreprocessTweet {
 		 	tweet.replaceAll("\\s*\\b#sarcasm\\b\\s*","");
 		 	tweet.replaceAll("\\s*\\b#sarcastic\\b\\s*","");
 		 */
-		
 		
 		//tweet=tweet.replaceAll("#?sarcasm|#?sarcastic", "");  
 		tweet=tweet.replaceAll("#[A-Za-z]+", "");
@@ -112,8 +101,8 @@ public class PreprocessTweet {
 		tweet=tweet.replaceAll("\"", "");
 		/*To remove Stop words : */
 		
-		 for(String s:stopwords)
-			tweet.replaceAll("\\s*\\b"+s+"\\b\\s*","");
+		 //for(String s:stopwords)
+		//	tweet.replaceAll("\\s*\\b"+s+"\\b\\s*","");
 		 
 		
 		return tweet;
@@ -162,11 +151,7 @@ public class PreprocessTweet {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			
-			
-		}
-		
-		
+			}	
+		}	
 	}
 }
