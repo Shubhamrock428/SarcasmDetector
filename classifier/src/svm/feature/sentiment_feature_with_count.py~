@@ -81,11 +81,8 @@ clf.fit(sar_features_arr + non_features_arr, observations)
 # print vectorize.get_feature_names()
 
 # test createPredictionVector 
-test_vector_sarcastic = getSVMVector(test_corpus_sarcastic)
-test_vector_nonsarcastic= getSVMVector(test_corpus_nonsarcastic)
-print clf.predict(test_vector_sarcastic)
-print clf.predict(test_vector_nonsarcastic)
+test_vector = getSVMVector(test_corpus)
 
-#print vectors in files for F1
+print clf.predict(test_vector)
 
 	

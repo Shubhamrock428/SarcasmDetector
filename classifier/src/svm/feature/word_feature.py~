@@ -92,6 +92,6 @@ test_vector_nonsarcastic = createPredictionVector(feature_names, test_data_nonsa
 print clf.predict([test_vector_sarcastic])
 print clf.predict([test_vector_nonsarcastic])
 
-#print these vectors in files for F1
+#print these vectors in files
     
     

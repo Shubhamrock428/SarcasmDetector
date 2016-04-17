@@ -10,8 +10,8 @@ def readFile(file):
     return content
 
 
-content_sarcastic=readFile('/home/swanand/nlpProject/Naive Bayes/data/outputs/nbtags_sarcastic.txt')
-content_nonsarcastic=readFile('/home/swanand/nlpProject/Naive Bayes/data/outputs/nbtags_nonsarcastic.txt')
+content_sarcastic=readFile('/home/swanand/nlpProject/Naive Bayes/data/outputs/tags_sarcastic.txt')
+content_nonsarcastic=readFile('/home/swanand/nlpProject/Naive Bayes/data/outputs/tags_nonsarcastic.txt')
 tp=0
 tn=0
 fp=0
@@ -42,4 +42,6 @@ r=1.0*tp/(tp+tn)
 f=2.0*p*r/(p+r)
 print 'Precision: '+str(p)+' Recall: '+str(r)
 print 'F1: ',str(f)
+
+
 

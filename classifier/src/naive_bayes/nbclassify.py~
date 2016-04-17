@@ -53,9 +53,9 @@ print sarcasm_count
 print nonsarcasm_count
 content=fileRead('/home/swanand/nlpProject/Naive Bayes/data/dev_sarcastic_proc.txt')
 f1="/home/swanand/nlpProject/Naive Bayes/data/outputs/nboutput_sarcastic.txt"
-f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/tags_sarcastic.txt"
+f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/nbtags_sarcastic.txt"
 NBtest(content,f1,f2)
 content=fileRead('/home/swanand/nlpProject/Naive Bayes/data/dev_nonsarcastic_proc.txt')
 f1="/home/swanand/nlpProject/Naive Bayes/data/outputs/nboutput_nonsarcastic.txt"
-f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/tags_nonsarcastic.txt"
+f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/nbtags_nonsarcastic.txt"
 NBtest(content,f1,f2)

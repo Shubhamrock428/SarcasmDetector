@@ -76,5 +76,3 @@ test_vector_nonsarcastic= getSVMVector(test_corpus_nonsarcastic)
 print clf.predict(test_vector_sarcastic)
 print clf.predict(test_vector_nonsarcastic)
 
-#print vectors in files for F1
-
