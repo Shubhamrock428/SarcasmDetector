@@ -1,4 +1,9 @@
 import json,string,codecs
+
+from sklearn import svm
+from sklearn.externals import joblib
+from sklearn.feature_extraction import *
+
 model={}
 
 with codecs.open("sentiment_model.txt","r") as f:
@@ -24,6 +29,7 @@ def tag(s):
 		word = unicode(word, "utf-8")		
 		if word in model:
 			if model[word] == 1:
+				#print 'inside: ',word
 				posCount+=1
 			elif model[word] == 0:
 				neuCount+=1
@@ -31,17 +37,52 @@ def tag(s):
 				negCount+=1
 		else:
 			neuCount+=1
-	score.append(float(posCount/length)*100)
-	score.append(float(neuCount/length)*100)
-	score.append(float(negCount/length)*100)		
+	score.append(float(1.0*posCount/length)*100)
+	score.append(float(1.0*neuCount/length)*100)
+	score.append(float(1.0*negCount/length)*100)		
 	return score
 
-content=fileRead('test.txt')
-file = open("sentiment_feature_with_count", "w")
-for s in content:
-	score=tag(s)
-	file.write(str(score)+'\n')
-file.close()
+def getSVMVector(fileName):
+	#content=fileRead('/home/swanand/nlpProject/Feature/data/nonsarcastic_proc.txt')
+	content=fileRead(fileName)	
+	#file = open('/home/swanand/nlpProject/Feature/data/outputs/vector_nonsarcastic_proc.txt', "w")
+	featureVecor=[]
+	for s in content:
+		score=tag(s)
+		featureVecor.append(score)
+	return featureVecor
 	
-	
+sarcastic_corpus="../sarcastic.txt"
+non_sarcastic_corpus="../non_sarcastic.txt"
+test_corpus="../test.txt"
+
+sar_features_arr = getSVMVector(sarcastic_corpus)
+print sar_features_arr
+observations = [1] * len(sar_features_arr)
+
+non_features_arr = getSVMVector(non_sarcastic_corpus)
+observations += [0] * len(non_features_arr)
+
+print len(sar_features_arr) + len(non_features_arr) 
+print len(observations)
+
+
+
+clf = svm.SVC()
+# clf = SGDClassifier(loss="hinge", penalty="l2")
+
+ 
+clf.fit(sar_features_arr + non_features_arr, observations)
+
+# joblib.dump(clf, '../predict/senti_feature_pos/senti_feature_pos.pkl')
+
+# print s
+# This list of features is needed to create a vector for prediction  
+# print vectorize.get_feature_names()
+
+# test createPredictionVector 
+test_vector = getSVMVector(test_corpus)
+
+print clf.predict(test_vector)
+
 	
