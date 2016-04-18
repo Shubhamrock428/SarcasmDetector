@@ -79,9 +79,9 @@ def NBSentence(sentence):
 			score1+=math.log(1.0/sarcasm_count)
 			score2+=math.log(1.0/nonsarcasm_count)
         if score1> score2:
-		print 'NB says: Sarcastic'
+		return 'Naive Bayes says: Sarcastic'
         else:
-		print 'NB says: Non Sarcastic'
+		return 'Naive Bayes says: Non Sarcastic'
 
 	
 if __name__ == "__main__":

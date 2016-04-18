@@ -1,6 +1,6 @@
 # coding=utf-8
 
-import os,string,json,math,sys
+import os, string, json, math, sys
 from nbclassify import NBSentence
 from sentiment_feature_position import getSVMVectorSentiPosAPP
 from sentiment_feature_with_count import getSVMVectorSentiCntAPP
@@ -9,20 +9,26 @@ from word_feature import getSVMVectorBagWordsAPP
 
 JAVA_CLI = "java -cp ../../../../process-tweet/target/process-tweet-0.0.1-SNAPSHOT-jar-with-dependencies.jar InputPreprocessTweet '{0}' "
 
-input_line = sys.argv[1]
 
-print "Input provided - ", input_line
-
-stemmed_op = os.popen(JAVA_CLI.format(input_line)).read()
-if(stemmed_op):
-    input_line = stemmed_op
+def run_all_features(input_line): 
+    output = []
+    output.append("Input provided - " + input_line)
     
-print "Stemmed it to - ", stemmed_op
+    stemmed_op = os.popen(JAVA_CLI.format(input_line)).read()
+    if(stemmed_op):
+        input_line = stemmed_op
+        
+    output.append("Stemmed it to - {0}".format(stemmed_op))
+    
+    output.append(NBSentence(input_line))
+    
+    output.append(getSVMVectorBagWordsAPP(input_line))
+    output.append(getSVMVectorSentiCntAPP(input_line))
+    output.append(getSVMVectorSentiPosAPP(input_line))
+    
+    return output
 
-NBSentence(input_line)
 
-getSVMVectorBagWordsAPP(input_line)
-getSVMVectorSentiCntAPP(input_line)
-getSVMVectorSentiPosAPP(input_line)
-
-
+if __name__ == "__main__":
+    # stuff only to run when not called via 'import' here
+    print "\n".join( run_all_features(sys.argv[1]) ) 

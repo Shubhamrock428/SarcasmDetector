@@ -60,9 +60,9 @@ def getSVMVectorSentiPosAPP(line):
     for vect in v1:
      v=str(vect)
      if v=='0':
-	print 'SVM Feature sentiment with position says: Non Sarcastic' 
+	return 'SVM Feature sentiment with position says: Non Sarcastic' 
      else:
-	print 'SVM Feature sentiment with position says: Sarcastic' 
+	return 'SVM Feature sentiment with position says: Sarcastic' 
 	
 
 def main_fn() :

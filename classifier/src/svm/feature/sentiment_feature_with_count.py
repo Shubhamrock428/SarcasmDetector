@@ -62,9 +62,9 @@ def getSVMVectorSentiCntAPP(line):
 	for vect in v1:
      		v=str(vect)
      		if v=='0':
-			print 'SVM Feature sentiment with count says: Non Sarcastic' 
+			return 'SVM Feature sentiment with count says: Non Sarcastic' 
      		else:
-			print 'SVM Feature sentiment with count says: Sarcastic'
+			return 'SVM Feature sentiment with count says: Sarcastic'
 	
 
 def main_fn():
