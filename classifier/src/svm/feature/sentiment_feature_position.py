@@ -72,7 +72,7 @@ def main_fn() :
     test_corpus_nonsarcastic="../test.txt"
     
     sar_features_arr = getSVMVectorSentiPos(sarcastic_corpus)
-    print sar_features_arr
+#     print sar_features_arr
     observations = [1] * len(sar_features_arr)
     
     non_features_arr = getSVMVectorSentiPos(non_sarcastic_corpus)

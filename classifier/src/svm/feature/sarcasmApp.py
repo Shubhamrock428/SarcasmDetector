@@ -21,7 +21,7 @@ print "Stemmed it to - ", stemmed_op
 
 NBSentence(input_line)
 
-# getSVMVectorBagWordsAPP(input_line)
+getSVMVectorBagWordsAPP(input_line)
 getSVMVectorSentiCntAPP(input_line)
 getSVMVectorSentiPosAPP(input_line)
 
