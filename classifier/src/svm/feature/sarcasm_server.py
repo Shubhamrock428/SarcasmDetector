@@ -4,11 +4,11 @@ import web
 from sarcasmApp import run_all_features
   
 urls = (
-    '/(.*)', 'hello'
+    '/(.*)', 'run_all_features_api'
 )
 app = web.application(urls, globals())
 
-class hello:        
+class run_all_features_api:        
     def GET(self, name):
         print "::::",name
         

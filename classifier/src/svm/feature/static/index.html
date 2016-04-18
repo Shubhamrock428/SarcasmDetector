@@ -1,0 +1,161 @@
+<html>
+<head>
+<link rel="stylesheet" href="./css/app.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+  crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+  integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+  crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+  integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+  crossorigin="anonymous"></script>
+
+<meta charset="UTF-8">
+<script type="text/javascript">
+	var run_classifier = function() {
+		var input = $("#testData").val()
+		$.ajax({
+			'url' : "/" + input,
+			"success" : function(data) {
+				$("#resultDiv").html(data)
+			},
+			"error" : function(jqXHR, textStatus, errorThrown) {
+				console.error('Issue while calling API - ' + url + ' - ' + textStatus + ' - ' + errorThrown);
+			},
+		});
+	}
+</script>
+</head>
+<body id="page-top">
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+          data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+            class="icon-bar"></span> <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand page-scroll" href="#page-top"><b>Mission NLP</b></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+          <li><a class="page-scroll" href="#stats">STATS</a></li>
+          <li><a class="page-scroll" href="#demo">DEMO</a></li>
+
+        </ul>
+
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+  <div style="margin-top: 70px;"></div>
+  <div class="container" style="margin-top: 10px;">
+    <section id="stats">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="thumbnail">
+            <img alt="sarcastic word cloud" src="./images/sarcastic.png" class="image-fit">
+            <div class="caption">Word Cloud for Sarcastic Tweets</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="thumbnail">
+            <img alt="non-sarcastic word cloud" src="./images/non_sarcastic.png" class="image-fit">
+            <div class="caption">Word Cloud for Non-Sarcastic Tweets</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="thumbnail">
+            <img alt="Results of Each model" src="./images/bar.png" class="image-fit">
+            <div class="caption">Comparison of different model</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="thumbnail">
+            <img alt="non-sarcastic word cloud" src="./images/model.png" class="image-fit">
+            <div class="caption">Results of each model</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <section id="demo">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <br />
+          <h2>Let's identify sarcasm &#9786;</h2>
+          <div id="custom-search-input">
+            <div class="input-group col-md-12">
+              <input type="text" id="testData" class="form-control input-lg"
+                placeholder="Enter a short text in hindi.." /> <span class="input-group-btn"
+                onclick="run_classifier()">
+                <button class="btn btn-info btn-lg" type="button">
+                  <i class="glyphicon glyphicon-search"></i>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6" id="resultDiv"
+          style="font-family: American Typewriter; font-size: 20px;"></div>
+        <div class="col-md-3"></div>
+      </div>
+
+    </section>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+  </div>
+
+</body>
+</html>
