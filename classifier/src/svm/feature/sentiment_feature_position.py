@@ -44,7 +44,8 @@ def getSVMVector(filename):
 
 sarcastic_corpus="../sarcastic.txt"
 non_sarcastic_corpus="../non_sarcastic.txt"
-test_corpus="../test.txt"
+test_corpus_sarcastic="../test.txt"
+test_corpus_nonsarcastic="../test.txt"
 
 sar_features_arr = getSVMVector(sarcastic_corpus)
 print sar_features_arr
@@ -64,7 +65,7 @@ clf = svm.SVC()
  
 clf.fit(sar_features_arr + non_features_arr, observations)
 
-# joblib.dump(clf, '../predict/senti_feature_pos/senti_feature_pos.pkl')
+joblib.dump(clf, '../predict/senti_feature_pos/senti_feature_pos.pkl')
 
 # print s
 # This list of features is needed to create a vector for prediction  

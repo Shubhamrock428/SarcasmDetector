@@ -5,20 +5,21 @@ from sklearn.feature_extraction import *
 from sklearn.externals import joblib
  
 
-
-test_data_sarcastic = ""
-test_data_nonsarcastic = ""
-
-def createPredictionVector(feature_names, test_data):
-    print test_data
-    vec_arr = [0] * len(feature_names)
-    for word in test_data.split(" "):
-        if word in feature_names:
-            vec_arr[feature_names.index(word)]=1
-    
-    print vec_arr
-    print Counter(vec_arr)
-    return vec_arr
+def createPredictionVector(feature_names, test_file):
+    print "Reading from " , test_file
+    vector_arr = []
+    with open(test_file, "r") as f:
+        test_data = f.readline()
+        while test_data:
+            test_data = test_data.strip()
+            vector = [0] * len(feature_names)
+            for word in test_data.split(" "):
+                if word in feature_names:
+                    vector[feature_names.index(word)]+=1
+            vector_arr.append(vector)
+            test_data = f.readline()
+        print vector_arr
+        return vector_arr
     
 
 def getTrainingVectors (sarcastic_corpus="../sarcastic.txt", non_sarcastic_corpus="../non_sarcastic.txt"):
@@ -71,27 +72,34 @@ def getTrainingVectors (sarcastic_corpus="../sarcastic.txt", non_sarcastic_corpu
     return features_arr, observations,vectorize.get_feature_names()
 
 
-
-
-clf = svm.SVC()
-# clf = SGDClassifier(loss="hinge", penalty="l2")
-
-features_arr, observations, feature_names = getTrainingVectors() 
-clf.fit(features_arr, observations)
-
-joblib.dump(clf, '../predict/word_feature/word_feature.pkl')
-
-# print s
-# This list of features is needed to create a vector for prediction  
-# print vectorize.get_feature_names()
-
-# test createPredictionVector 
-test_vector_sarcastic = createPredictionVector(feature_names, test_data_sarcastic)
-test_vector_nonsarcastic = createPredictionVector(feature_names, test_data_nonsarcastic)
-
-print clf.predict([test_vector_sarcastic])
-print clf.predict([test_vector_nonsarcastic])
-
-#print these vectors in files for F1
+def main_fn():
     
+    clf = svm.SVC()
+    # clf = SGDClassifier(loss="hinge", penalty="l2")
     
+    features_arr, observations, feature_names = getTrainingVectors() 
+    clf.fit(features_arr, observations)
+    
+    print joblib.dump(clf, '../predict/word_feature/word_feature.pkl')
+    print joblib.dump(feature_names, '../predict/word_feature/feature_names.pkl')
+    
+    print "dumped model"
+    
+    # print s
+    # This list of features is needed to create a vector for prediction  
+    # print vectorize.get_feature_names()
+    
+    # test createPredictionVector 
+#     test_vector_sarcastic = createPredictionVector(feature_names, test_data_sarcastic)
+#     test_vector_nonsarcastic = createPredictionVector(feature_names, test_data_nonsarcastic)
+#     
+#     print clf.predict([test_vector_sarcastic])
+#     print clf.predict([test_vector_nonsarcastic])
+    
+    #print these vectors in files for F1
+        
+    
+print __name__
+if __name__ == "__main__":
+    # stuff only to run when not called via 'import' here
+    main_fn() 

@@ -9,3 +9,9 @@ target
 process-tweet/test.txt
 
 process-tweet/nonsarcastic_proc1.txt
+
+*.pyc
+
+*.py~
+
+*.pkl
