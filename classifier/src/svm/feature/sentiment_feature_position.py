@@ -44,7 +44,6 @@ def getSVMVectorSentiPos(filename):
 
 def getSVMVectorSentiPosAPP(line):
     global classifier
-    print line
     vector=[]
     words = line.split()
     list = chunkify(range(100),len(words))
@@ -102,7 +101,7 @@ def main_fn() :
     
     #print vectors in files for F1
 
-print __name__
+
 if __name__ == "__main__":
     # stuff only to run when not called via 'import' here
     main_fn() 

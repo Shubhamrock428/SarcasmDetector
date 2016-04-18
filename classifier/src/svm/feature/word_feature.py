@@ -119,7 +119,6 @@ def main_fn():
     #print these vectors in files for F1
         
     
-print __name__
 if __name__ == "__main__":
     # stuff only to run when not called via 'import' here
     main_fn() 

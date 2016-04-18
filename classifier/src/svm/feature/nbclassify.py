@@ -2,6 +2,8 @@ import os,string,json,math,sys
 
 stopwords=[]
 vocab=set()
+
+    
 def readModel():
     with open('nbmodel.txt', 'rb') as handle:
         data = json.loads(handle.read())
@@ -49,17 +51,19 @@ data=readModel()
 model=data['MODEL']
 sarcasm_count=data['SARCASM_LENGTH']
 nonsarcasm_count=data['NONSARCASM_LENGTH']
-print sarcasm_count
-print nonsarcasm_count
-content=fileRead('/home/swanand/nlpProject/Naive Bayes/data/dev_sarcastic_proc.txt')
-f1="/home/swanand/nlpProject/Naive Bayes/data/outputs/nboutput_sarcastic.txt"
-f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/tags_sarcastic.txt"
-NBtest(content,f1,f2)
-content=fileRead('/home/swanand/nlpProject/Naive Bayes/data/dev_nonsarcastic_proc.txt')
-f1="/home/swanand/nlpProject/Naive Bayes/data/outputs/nboutput_nonsarcastic.txt"
-f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/tags_nonsarcastic.txt"
-NBtest(content,f1,f2)
+# print sarcasm_count
+# print nonsarcasm_count
 
+def main_fn(): 
+    content=fileRead('/home/swanand/nlpProject/Naive Bayes/data/dev_sarcastic_proc.txt')
+    f1="/home/swanand/nlpProject/Naive Bayes/data/outputs/nboutput_sarcastic.txt"
+    f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/tags_sarcastic.txt"
+    NBtest(content,f1,f2)
+    content=fileRead('/home/swanand/nlpProject/Naive Bayes/data/dev_nonsarcastic_proc.txt')
+    f1="/home/swanand/nlpProject/Naive Bayes/data/outputs/nboutput_nonsarcastic.txt"
+    f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/tags_nonsarcastic.txt"
+    NBtest(content,f1,f2)
+    
 
 def NBSentence(sentence):
 	score1=math.log(0.44)
@@ -80,3 +84,6 @@ def NBSentence(sentence):
 		print 'NB says: Non Sarcastic'
 
 	
+if __name__ == "__main__":
+    # stuff only to run when not called via 'import' here
+    main_fn() 
