@@ -10,8 +10,8 @@ def readFile(file):
     return content
 
 
-content_sarcastic=readFile('/home/swanand/nlpProject/Naive Bayes/data/outputs/tags_sarcastic.txt')
-content_nonsarcastic=readFile('/home/swanand/nlpProject/Naive Bayes/data/outputs/tags_nonsarcastic.txt')
+content_sarcastic=readFile("/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/tags_sarcastic.txt")
+content_nonsarcastic=readFile("/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/tags_nonsarcastic.txt")
 tp=0
 tn=0
 fp=0

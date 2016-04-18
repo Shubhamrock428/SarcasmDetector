@@ -22,7 +22,7 @@ def createPredictionVector(feature_names, test_file):
         return vector_arr
     
 
-def getTrainingVectors (sarcastic_corpus="../sarcastic.txt", non_sarcastic_corpus="../non_sarcastic.txt"):
+def getTrainingVectors (sarcastic_corpus="/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/sarcastic_proc.txt", non_sarcastic_corpus="/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/nonsarcastic_proc.txt"):
     global test_data
     # Array of dicts. dicts have count of words
     word_counts = []
