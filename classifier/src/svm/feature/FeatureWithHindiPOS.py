@@ -4,7 +4,7 @@ with open(tagged_file,"r") as f:
     content = f.readlines()
 
 
-def getSVMVector():
+def getSVMVectorPOS():
     tags = ['NN','PSP','VM','SYM','JJ','VAUX','NNP','XC','PRP','CC','RP','QC','NST','DEM','QF','NEG','RB','INTF','RDP','QO','WQ','INJ']
     vector=[]
     v = [0]*len(tags)
@@ -25,5 +25,9 @@ def getSVMVector():
             v[index]+=1
     vector.append(v)
     return vector
-print getSVMVector()
+
+print getSVMVectorPOS()
+
+
+
 
