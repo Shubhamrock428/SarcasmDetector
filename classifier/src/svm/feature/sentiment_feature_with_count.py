@@ -52,6 +52,21 @@ def getSVMVectorSentiCnt(fileName):
 		featureVecor.append(score)
 	return featureVecor
 
+
+def getSVMVectorSentiCntAPP(line):
+	featureVecor=[]
+	score=tag(line)
+	featureVecor.append(score)
+	clf_senti_cnt = joblib.load( '../predict/senti_feature_cnt/senti_feature_cnt.pkl')
+	v1 = clf_senti_cnt.predict(featureVecor)
+	for vect in v1:
+     		v=str(vect)
+     		if v=='0':
+			print 'SVM Feature sentiment with count says: Non Sarcastic' 
+     		else:
+			print 'SVM Feature sentiment with count says: Sarcastic'
+	
+
 def main_fn():
 	sarcastic_corpus="../../../../process-tweet/sarcastic_proc.txt"
 	non_sarcastic_corpus="../../../../process-tweet/nonsarcastic_proc.txt"

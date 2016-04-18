@@ -42,6 +42,30 @@ def getSVMVectorSentiPos(filename):
         vector.append(flattenListOfLists(list))
     return vector
 
+def getSVMVectorSentiPosAPP(line):
+    global classifier
+    print line
+    vector=[]
+    words = line.split()
+    list = chunkify(range(100),len(words))
+    for i in range(0,len(words)):
+    	s=unicode(words[i],"utf-8")
+    	if s in classifier:
+   		value = classifier[s]
+    	else :
+    		value = 0
+        list[i]=fillSameValue(list[i],value)
+    vector.append(flattenListOfLists(list))
+    clf_senti_pos = joblib.load( '../predict/senti_feature_pos/senti_feature_pos.pkl')
+    v1 = clf_senti_pos.predict(vector)
+    for vect in v1:
+     v=str(vect)
+     if v=='0':
+	print 'SVM Feature sentiment with position says: Non Sarcastic' 
+     else:
+	print 'SVM Feature sentiment with position says: Sarcastic' 
+	
+
 def main_fn() :
     sarcastic_corpus="../../../../process-tweet/sarcastic_proc.txt"
     non_sarcastic_corpus="../../../../process-tweet/nonsarcastic_proc.txt"
