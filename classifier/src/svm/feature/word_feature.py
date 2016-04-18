@@ -22,21 +22,22 @@ def createPredictionVector(feature_names, test_file):
         return vector_arr
     
 def getSVMVectorBagWordsAPP(line):
-	clf_word = joblib.load( '../predict/word_feature/word_feature.pkl')
-	feature_names = joblib.load( '../predict/word_feature/feature_names.pkl')
-	vector = [0] * len(feature_names)
-        for word in test_data.split(" "):
-        	if word in feature_names:
-        		vector[feature_names.index(word)]+=1
-        vector_arr.append(vector)
-	v1 = clf_word.predict(vector_arr)
-	for vect in v1:
-     		v=str(vect)
-     		if v=='0':
-			print 'SVM Bag of words says: Non Sarcastic' 
-     		else:
-			print 'SVM Bag of words says: Sarcastic'
-	
+    clf_word = joblib.load( '../predict/word_feature/word_feature.pkl')
+    feature_names = joblib.load( '../predict/word_feature/feature_names.pkl')
+    
+    vector = [0] * len(feature_names)
+    for word in line.split(" "):
+        if word in feature_names:
+            vector[feature_names.index(word)]+=1
+
+    v1 = clf_word.predict([vector])
+    for vect in v1:
+        v=str(vect)
+        if v=='0':
+            print 'SVM Bag of words says: Non Sarcastic' 
+        else:
+            print 'SVM Bag of words says: Sarcastic'
+
 
 def getTrainingVectors (sarcastic_corpus="/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/sarcastic_proc.txt", non_sarcastic_corpus="/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/nonsarcastic_proc.txt"):
     global test_data
