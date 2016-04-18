@@ -10,8 +10,8 @@ def readFile(file):
     return content
 
 
-content_sarcastic=readFile("../../../process-tweet/tags_sarcastic_senti_pos.txt")
-content_nonsarcastic=readFile("../../../process-tweet/tags_nonsarcastic_senti_pos.txt")
+content_sarcastic=readFile("../../../process-tweet/tags_sarcastic_word.txt")
+content_nonsarcastic=readFile("../../../process-tweet/tags_nonsarcastic_word.txt")
 tp=0
 tn=0
 fp=0

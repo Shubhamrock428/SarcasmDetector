@@ -3,7 +3,7 @@ from collections import Counter
 from sklearn import svm
 from sklearn.feature_extraction import *
 from sklearn.externals import joblib
- 
+import time 
 
 def createPredictionVector(feature_names, test_file):
     print "Reading from " , test_file
@@ -89,7 +89,7 @@ def getTrainingVectors (sarcastic_corpus="/Users/sidhesh/Documents/Github/Team-M
 
 
 def main_fn():
-    
+    start =  time.time()
     clf = svm.SVC()
     # clf = SGDClassifier(loss="hinge", penalty="l2")
     
@@ -103,7 +103,7 @@ def main_fn():
     print joblib.dump(clf, '../predict/word_feature/word_feature.pkl')
     print joblib.dump(feature_names, '../predict/word_feature/feature_names.pkl')
     
-    print "Dumped model"
+    print "Dumped model. Time taken {0} secs".format((time.time() -start))
     
     # print s
     # This list of features is needed to create a vector for prediction  
