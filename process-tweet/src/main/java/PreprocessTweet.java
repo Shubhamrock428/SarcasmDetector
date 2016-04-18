@@ -60,7 +60,7 @@ public class PreprocessTweet {
 		}
 	}
 
-	private String process(String tweet) {
+	public String process(String tweet) {
 		// TODO Auto-generated method stub
 		tweet = tweet.trim();
 
