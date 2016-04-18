@@ -2,6 +2,7 @@ from collections import Counter
 
 from sklearn import svm
 from sklearn.feature_extraction import *
+from sklearn.linear_model import *
 from sklearn.externals import joblib
 import time 
 
@@ -91,8 +92,8 @@ def getTrainingVectors (sarcastic_corpus="/Users/sidhesh/Documents/Github/Team-M
 
 def main_fn():
     start =  time.time()
-    clf = svm.SVC()
-    # clf = SGDClassifier(loss="hinge", penalty="l2")
+#     clf = svm.SVC()
+    clf = SGDClassifier(loss="hinge", penalty="l1")
     
     features_arr, observations, feature_names = getTrainingVectors(
       "../../../../process-tweet/sarcastic_proc.txt",
