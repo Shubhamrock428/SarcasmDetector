@@ -77,13 +77,17 @@ def main_fn():
     clf = svm.SVC()
     # clf = SGDClassifier(loss="hinge", penalty="l2")
     
-    features_arr, observations, feature_names = getTrainingVectors() 
+    features_arr, observations, feature_names = getTrainingVectors(
+      "/Users/madhav/Documents/workspace/Team-MissionNLP/process-tweet/sarcastic_proc.txt",
+      "/Users/madhav/Documents/workspace/Team-MissionNLP/process-tweet/nonsarcastic_proc.txt")
+
+    print "Created feature vectors length observations {0} length of one vector {1}".format(len(observations),len(features_arr[0])),  
     clf.fit(features_arr, observations)
     
     print joblib.dump(clf, '../predict/word_feature/word_feature.pkl')
     print joblib.dump(feature_names, '../predict/word_feature/feature_names.pkl')
     
-    print "dumped model"
+    print "Dumped model"
     
     # print s
     # This list of features is needed to create a vector for prediction  

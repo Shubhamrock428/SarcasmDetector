@@ -51,42 +51,47 @@ def getSVMVector(fileName):
 		score=tag(s)
 		featureVecor.append(score)
 	return featureVecor
+
+def main_fn():
+	sarcastic_corpus="../sarcastic.txt"
+	non_sarcastic_corpus="../non_sarcastic.txt"
+	test_corpus_sarcastic="../test.txt"
+	test_corpus_nonsarcastic="../test.txt"
 	
-sarcastic_corpus="../sarcastic.txt"
-non_sarcastic_corpus="../non_sarcastic.txt"
-test_corpus_sarcastic="../test.txt"
-test_corpus_nonsarcastic="../test.txt"
-
-sar_features_arr = getSVMVector(sarcastic_corpus)
-print sar_features_arr
-observations = [1] * len(sar_features_arr)
-
-non_features_arr = getSVMVector(non_sarcastic_corpus)
-observations += [0] * len(non_features_arr)
-
-print len(sar_features_arr) + len(non_features_arr) 
-print len(observations)
-
-
-
-clf = svm.SVC()
-# clf = SGDClassifier(loss="hinge", penalty="l2")
-
- 
-clf.fit(sar_features_arr + non_features_arr, observations)
-
-joblib.dump(clf, '../predict/senti_feature_pos/senti_feature_pos.pkl')
-
-# print s
-# This list of features is needed to create a vector for prediction  
-# print vectorize.get_feature_names()
-
-# test createPredictionVector 
-test_vector_sarcastic = getSVMVector(test_corpus_sarcastic)
-test_vector_nonsarcastic= getSVMVector(test_corpus_nonsarcastic)
-print clf.predict(test_vector_sarcastic)
-print clf.predict(test_vector_nonsarcastic)
-
-#print vectors in files for F1
-
+	sar_features_arr = getSVMVector(sarcastic_corpus)
+	print len(sar_features_arr)
+	observations = [1] * len(sar_features_arr)
 	
+	non_features_arr = getSVMVector(non_sarcastic_corpus)
+	observations += [0] * len(non_features_arr)
+	
+	print len(sar_features_arr) + len(non_features_arr) 
+	print len(observations)
+	
+	
+	
+	clf = svm.SVC()
+	# clf = SGDClassifier(loss="hinge", penalty="l2")
+	
+	 
+	clf.fit(sar_features_arr + non_features_arr, observations)
+	
+	joblib.dump(clf, '../predict/senti_feature_pos/senti_feature_pos.pkl')
+	
+	# print s
+	# This list of features is needed to create a vector for prediction  
+	# print vectorize.get_feature_names()
+	
+	# test createPredictionVector 
+	test_vector_sarcastic = getSVMVector(test_corpus_sarcastic)
+	test_vector_nonsarcastic= getSVMVector(test_corpus_nonsarcastic)
+	print clf.predict(test_vector_sarcastic)
+	print clf.predict(test_vector_nonsarcastic)
+	
+	#print vectors in files for F1
+	
+		
+print __name__
+if __name__ == "__main__":
+    # stuff only to run when not called via 'import' here
+    main_fn() 
