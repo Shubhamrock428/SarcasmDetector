@@ -1,1 +1,1 @@
-directory for storing model
+Directory for storing model
