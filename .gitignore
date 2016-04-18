@@ -15,3 +15,5 @@ process-tweet/nonsarcastic_proc1.txt
 *.py~
 
 *.pkl
+
+*.npy

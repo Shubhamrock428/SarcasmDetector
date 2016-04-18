@@ -42,7 +42,7 @@ def tag(s):
 	score.append(float(1.0*negCount/length)*100)		
 	return score
 
-def getSVMVector(fileName):
+def getSVMVectorSentiCnt(fileName):
 	#content=fileRead('/home/swanand/nlpProject/Feature/data/nonsarcastic_proc.txt')
 	content=fileRead(fileName)	
 	#file = open('/home/swanand/nlpProject/Feature/data/outputs/vector_nonsarcastic_proc.txt', "w")
@@ -53,16 +53,16 @@ def getSVMVector(fileName):
 	return featureVecor
 
 def main_fn():
-	sarcastic_corpus="../sarcastic.txt"
-	non_sarcastic_corpus="../non_sarcastic.txt"
+	sarcastic_corpus="/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/sarcastic_proc.txt"
+	non_sarcastic_corpus="/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/nonsarcastic_proc.txt"
 	test_corpus_sarcastic="../test.txt"
 	test_corpus_nonsarcastic="../test.txt"
 	
-	sar_features_arr = getSVMVector(sarcastic_corpus)
+	sar_features_arr = getSVMVectorSentiCnt(sarcastic_corpus)
 	print len(sar_features_arr)
 	observations = [1] * len(sar_features_arr)
 	
-	non_features_arr = getSVMVector(non_sarcastic_corpus)
+	non_features_arr = getSVMVectorSentiCnt(non_sarcastic_corpus)
 	observations += [0] * len(non_features_arr)
 	
 	print len(sar_features_arr) + len(non_features_arr) 
@@ -76,15 +76,15 @@ def main_fn():
 	 
 	clf.fit(sar_features_arr + non_features_arr, observations)
 	
-	joblib.dump(clf, '../predict/senti_feature_pos/senti_feature_pos.pkl')
+	joblib.dump(clf, '../predict/senti_feature_cnt/senti_feature_cnt.pkl')
 	
 	# print s
 	# This list of features is needed to create a vector for prediction  
 	# print vectorize.get_feature_names()
 	
 	# test createPredictionVector 
-	test_vector_sarcastic = getSVMVector(test_corpus_sarcastic)
-	test_vector_nonsarcastic= getSVMVector(test_corpus_nonsarcastic)
+	test_vector_sarcastic = getSVMVectorSentiCnt(test_corpus_sarcastic)
+	test_vector_nonsarcastic= getSVMVectorSentiCnt(test_corpus_nonsarcastic)
 	print clf.predict(test_vector_sarcastic)
 	print clf.predict(test_vector_nonsarcastic)
 	
