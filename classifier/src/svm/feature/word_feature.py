@@ -18,7 +18,7 @@ def createPredictionVector(feature_names, test_file):
                     vector[feature_names.index(word)]+=1
             vector_arr.append(vector)
             test_data = f.readline()
-        print vector_arr
+#         print vector_arr
         return vector_arr
     
 
