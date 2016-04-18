@@ -5,3 +5,7 @@ target
 *.class
 *~
 .pydevproject
+
+process-tweet/test.txt
+
+process-tweet/nonsarcastic_proc1.txt
