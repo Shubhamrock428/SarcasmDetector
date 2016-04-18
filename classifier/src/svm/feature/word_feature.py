@@ -78,8 +78,8 @@ def main_fn():
     # clf = SGDClassifier(loss="hinge", penalty="l2")
     
     features_arr, observations, feature_names = getTrainingVectors(
-      "/Users/madhav/Documents/workspace/Team-MissionNLP/process-tweet/sarcastic_proc.txt",
-      "/Users/madhav/Documents/workspace/Team-MissionNLP/process-tweet/nonsarcastic_proc.txt")
+      "../../../../process-tweet/sarcastic_proc.txt",
+      "../../../../process-tweet/nonsarcastic_proc.txt")
 
     print "Created feature vectors length observations {0} length of one vector {1}".format(len(observations),len(features_arr[0])),  
     clf.fit(features_arr, observations)

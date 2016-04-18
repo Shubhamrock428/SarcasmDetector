@@ -53,8 +53,8 @@ def getSVMVectorSentiCnt(fileName):
 	return featureVecor
 
 def main_fn():
-	sarcastic_corpus="/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/sarcastic_proc.txt"
-	non_sarcastic_corpus="/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/nonsarcastic_proc.txt"
+	sarcastic_corpus="../../../../process-tweet/sarcastic_proc.txt"
+	non_sarcastic_corpus="../../../../process-tweet/nonsarcastic_proc.txt"
 	test_corpus_sarcastic="../test.txt"
 	test_corpus_nonsarcastic="../test.txt"
 	
