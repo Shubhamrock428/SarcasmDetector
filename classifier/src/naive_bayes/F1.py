@@ -25,14 +25,14 @@ def calculateF1(content,flag):
 	while count!=len(content):
 		if flag==1:
 			if content_sarcastic[count]=='0\n':
-				fp+=1
+				fn+=1
 			else:
 				tp+=1
 		else:
 			if content_nonsarcastic[count]=='0\n':
 				tn+=1
 			else:
-				fn+=1
+				fp+=1
 		count+=1			
 	return
 calculateF1(content_sarcastic,1)
