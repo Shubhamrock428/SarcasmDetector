@@ -7,3 +7,5 @@ def ngrams(input, n):
     
   return ["-".join(x) for x in output]
 
+
+# print ngrams("x1 x2 x3 x4 x5", 3)
