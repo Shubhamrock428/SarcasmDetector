@@ -62,8 +62,8 @@ def NBtestBigram(content,f1,f2):
 			score1+=math.log(modelB[word][0])
                         score2+=math.log(modelB[word][1])
 		else:
-			score1+=math.log(1.0/sarcasm_count)
-			score2+=math.log(1.0/nonsarcasm_count)
+			score1+=math.log(1.0/sarcasm_countB)
+			score2+=math.log(1.0/nonsarcasm_countB)
         if score1> score2:
 		output.write('/SARCASTIC')
 		output2.write('1')
@@ -76,15 +76,50 @@ def NBtestBigram(content,f1,f2):
     output2.close()
     return 
 
+def NBtestTrigram(content,f1,f2):
+    output= open(f1,"w")
+    output2= open(f2,"w")
+    for s in content:
+	score1=math.log(0.48)
+	score2=math.log(0.52)
+    	output.write(s)
+	tweet=s.split()
+	for index in range (2,len(tweet)):
+		word=tweet[index-2]+','+tweet[index-1]+','+tweet[index]
+		word = unicode(word, "utf-8")		
+		if word in modelB:
+			score1+=math.log(modelT[word][0])
+                        score2+=math.log(modelT[word][1])
+		else:
+			score1+=math.log(1.0/sarcasm_countT)
+			score2+=math.log(1.0/nonsarcasm_countT)
+        if score1> score2:
+		output.write('/SARCASTIC')
+		output2.write('1')
+        else:
+		output.write('/NON_SARCASTIC')
+		output2.write('0')
+        output.write('\n')
+	output2.write('\n')
+    output.close()
+    output2.close()
+    return 
+
+
 data=readModel('nbmodel.txt')
 model=data['MODEL']
 dataB=readModel('nbmodelBigram.txt')
 modelB=dataB['MODEL']
+dataT=readModel('nbmodelTrigram.txt')
+modelT=dataT['MODEL']
+
 
 sarcasm_count=data['SARCASM_LENGTH']
 nonsarcasm_count=data['NONSARCASM_LENGTH']
-print sarcasm_count
-print nonsarcasm_count
+sarcasm_countB=dataB['SARCASM_LENGTH']
+nonsarcasm_countB=dataB['NONSARCASM_LENGTH']
+sarcasm_countT=dataT['SARCASM_LENGTH']
+nonsarcasm_countT=dataT['NONSARCASM_LENGTH']
 
 content=fileRead('/home/swanand/nlpProject/Naive Bayes/data/dev_sarcastic_proc.txt')
 f1="/home/swanand/nlpProject/Naive Bayes/data/outputs/nboutput_sarcastic.txt"
@@ -93,6 +128,9 @@ NBtest(content,f1,f2)
 f1="/home/swanand/nlpProject/Naive Bayes/data/outputs/bigram_nboutput_sarcastic.txt"
 f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/bigram_tags_sarcastic.txt"
 NBtestBigram(content,f1,f2)
+f1="/home/swanand/nlpProject/Naive Bayes/data/outputs/trigram_nboutput_sarcastic.txt"
+f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/trigram_tags_sarcastic.txt"
+NBtestTrigram(content,f1,f2)
 
 
 content=fileRead('/home/swanand/nlpProject/Naive Bayes/data/dev_nonsarcastic_proc.txt')
@@ -102,3 +140,6 @@ NBtest(content,f1,f2)
 f1="/home/swanand/nlpProject/Naive Bayes/data/outputs/bigram_nboutput_nonsarcastic.txt"
 f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/bigram_tags_nonsarcastic.txt"
 NBtestBigram(content,f1,f2)
+f1="/home/swanand/nlpProject/Naive Bayes/data/outputs/trigram_nboutput_nonsarcastic.txt"
+f2="/home/swanand/nlpProject/Naive Bayes/data/outputs/trigram_tags_nonsarcastic.txt"
+NBtestTrigram(content,f1,f2)
