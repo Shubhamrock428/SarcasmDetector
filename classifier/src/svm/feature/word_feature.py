@@ -7,7 +7,7 @@ from sklearn.externals import joblib
 from nlputility import ngrams
 import time 
   
-GRAM_SIZE = 3
+GRAM_SIZE = 1
 
 def createPredictionVector(feature_names, test_file):
     print "Reading from " , test_file
@@ -24,13 +24,18 @@ def createPredictionVector(feature_names, test_file):
             test_data = f.readline()
 #         print vector_arr
         return vector_arr
-
-clf_word = joblib.load( '../predict/word_feature/word_feature.pkl')
-feature_names = joblib.load( '../predict/word_feature/feature_names.pkl')
+try:
+    clf_word = joblib.load( '../predict/word_feature/word_feature.pkl')
+    feature_names = joblib.load( '../predict/word_feature/feature_names.pkl')
+except:
+    pass
         
 def getSVMVectorBagWordsAPP(line):
     global clf_word,feature_names
-    
+    if not (clf_word and feature_names):
+        clf_word = joblib.load( '../predict/word_feature/word_feature.pkl')
+        feature_names = joblib.load( '../predict/word_feature/feature_names.pkl')
+
     vector = [0] * len(feature_names)
     for word in ngrams(line, GRAM_SIZE):
         if word in feature_names:
