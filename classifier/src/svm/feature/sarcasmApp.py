@@ -15,7 +15,7 @@ def run_all_features(input_line):
     output.append("Input provided - " + input_line)
     
     stemmed_op = os.popen(JAVA_CLI_PREPROCESS.format(input_line)).read()
-    if(stemmed_op):
+    if(stemmed_op.strip()):
         input_line = stemmed_op
         
     output.append("Stemmed it to - {0}".format(stemmed_op))

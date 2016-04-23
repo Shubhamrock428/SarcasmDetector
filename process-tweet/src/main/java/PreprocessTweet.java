@@ -62,7 +62,10 @@ public class PreprocessTweet {
 	}
 
 	public String process(String tweet) {
-		// TODO Auto-generated method stub
+		//DO TRANSLATION
+		tweet = LanguageTranslator.translateToHindi(tweet);
+
+		
 		tweet = tweet.trim();
 
 		tweet = tweet.replaceAll("S?@\\S+\\s?", "");
@@ -96,9 +99,6 @@ public class PreprocessTweet {
 			sb.append(" ");
 		}
 		tweet = sb.toString();
-		//DO TRANSLATION
-		
-		tweet = LanguageTranslator.translateToHindi(tweet);
 		
 		return tweet;
 	}
