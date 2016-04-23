@@ -4,7 +4,10 @@ from sklearn import svm
 from sklearn.feature_extraction import *
 from sklearn.linear_model import *
 from sklearn.externals import joblib
+from nlputility import ngrams
 import time 
+  
+GRAM_SIZE = 3
 
 def createPredictionVector(feature_names, test_file):
     print "Reading from " , test_file
@@ -14,7 +17,7 @@ def createPredictionVector(feature_names, test_file):
         while test_data:
             test_data = test_data.strip()
             vector = [0] * len(feature_names)
-            for word in test_data.split(" "):
+            for word in ngrams(test_data, GRAM_SIZE):
                 if word in feature_names:
                     vector[feature_names.index(word)]+=1
             vector_arr.append(vector)
@@ -29,7 +32,7 @@ def getSVMVectorBagWordsAPP(line):
     global clf_word,feature_names
     
     vector = [0] * len(feature_names)
-    for word in line.split(" "):
+    for word in ngrams(line, GRAM_SIZE):
         if word in feature_names:
             vector[feature_names.index(word)]+=1
 
@@ -55,7 +58,7 @@ def getTrainingVectors (sarcastic_corpus="/Users/sidhesh/Documents/Github/Team-M
         while (line):
             line = line.strip()
             test_data = line.strip()
-            word_count = Counter(filter(None,line.split(" ")))
+            word_count = Counter(filter(None,ngrams(line, GRAM_SIZE)))
             word_counts.append(dict(word_count) )
             # 1 for sarcastic
             observations.append(1)
@@ -69,7 +72,7 @@ def getTrainingVectors (sarcastic_corpus="/Users/sidhesh/Documents/Github/Team-M
         
         while (line):
             line = line.strip()
-            word_count = Counter(filter(None,line.split(" ")))
+            word_count = Counter(filter(None,ngrams(line, GRAM_SIZE)))
             word_counts.append(dict(word_count) )
             # 0 for non sarcastic
             observations.append(0)
