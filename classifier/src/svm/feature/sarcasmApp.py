@@ -7,14 +7,14 @@ from sentiment_feature_with_count import getSVMVectorSentiCntAPP
 from word_feature import getSVMVectorBagWordsAPP 
 
 
-JAVA_CLI = "java -cp ../../../../process-tweet/target/process-tweet-0.0.1-SNAPSHOT-jar-with-dependencies.jar InputPreprocessTweet '{0}' "
+JAVA_CLI_PREPROCESS = "java -cp ../../../../process-tweet/target/process-tweet-0.0.1-SNAPSHOT-jar-with-dependencies.jar InputPreprocessTweet '{0}' "
 
 
 def run_all_features(input_line): 
     output = []
     output.append("Input provided - " + input_line)
     
-    stemmed_op = os.popen(JAVA_CLI.format(input_line)).read()
+    stemmed_op = os.popen(JAVA_CLI_PREPROCESS.format(input_line)).read()
     if(stemmed_op):
         input_line = stemmed_op
         

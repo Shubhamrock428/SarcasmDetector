@@ -13,6 +13,7 @@ import java.util.HashSet;
 
 
 import edu.usc.nlp.mnlp.hindi.HindiUtil;
+import edu.usc.nlp.mnlp.langtranslator.LanguageTranslator;
 
 public class PreprocessTweet {
 
@@ -87,7 +88,7 @@ public class PreprocessTweet {
 		tweet = tweet.replaceAll("[a-zA-Z]+", "");
 		tweet = tweet.replaceAll("\\\\", "");
 		tweet = tweet.replaceAll("\"", "");
-		//System.out.println(tweet);
+		//DO STEMMING
 		StringBuffer sb = new StringBuffer();
 		for (String word : tweet.split(" ") )
 		{
@@ -95,7 +96,9 @@ public class PreprocessTweet {
 			sb.append(" ");
 		}
 		tweet = sb.toString();
-		//System.out.println(tweet);
+		//DO TRANSLATION
+		
+		tweet = LanguageTranslator.translateToHindi(tweet);
 		
 		return tweet;
 	}
