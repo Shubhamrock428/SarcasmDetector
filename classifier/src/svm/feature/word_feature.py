@@ -88,14 +88,15 @@ def getTrainingVectors (sarcastic_corpus="../sarcastic.txt", non_sarcastic_corpu
     # word_counts = [{'word4': 1,'word2': 1,},{'word1': 2,'word2': 2,},{'word3': 2,'word4': 2,},{'word3': 3,'word4': 3,} ]
     # observations = [1,1,1,0]
     # print word_counts
-    # print observations
+    #print observations
     vectorize = DictVectorizer()
     
     feature_vectorized = vectorize.fit_transform(word_counts)
     
     # # vector array  
     features_arr = feature_vectorized.toarray()
-    # print features_arr[0]
+    #feature_arr=features_arr.tolist()
+    #print features_arr[0]
     
     return features_arr, observations,vectorize.get_feature_names()
 

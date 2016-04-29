@@ -1,6 +1,7 @@
 from sklearn import svm
 from sklearn.externals import joblib
 from sklearn.feature_extraction import *
+from shutil import copyfile
 
 def getSVMVector(tagged_file):
     with open(tagged_file,"r") as f:
