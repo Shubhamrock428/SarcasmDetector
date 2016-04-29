@@ -45,15 +45,15 @@ public class PreprocessTweet {
 		String nonSarcasticFilePath = "/Users/sidhesh/Documents/Github/Team-MissionNLP/tweet-fetcher/Non-Sarcastic/nonSarcasticTweets.txt";
 		String devPath = "/Users/sidhesh/Documents/Github/Team-MissionNLP/tweet-fetcher/Non-Sarcastic/dev.txt";
 		String filename = "/Users/sidhesh/Documents/workspace/process-tweet/test.txt";
-		String testoutput = "/Users/sidhesh/Documents/workspace/process-tweet/testop.txt";
-
+		String testoutput = "/Users/sidhesh/Documents/Github/Team-MissionNLP/tweet-fetcher/sarcasm.txt";
+		String t = "/Users/sidhesh/Documents/Github/Team-MissionNLP/process-tweet/#sarcasm.txt";
 		FileReader[] f = new FileReader[2];
 		try {
 			f[0] = new FileReader(new File("ranknl.txt"));
 			f[1] = new FileReader(new File("stopwords_hi.txt"));
 			getStopwords(f);
-			makeProcessedFile(sarcasticFilePath, "sarcastic_temp.txt");
-			makeProcessedFile(nonSarcasticFilePath, "nonsarcastic_temp.txt");
+			makeProcessedFile(t, "newenglishsarcastic_temp.txt");
+			//makeProcessedFile(nonSarcasticFilePath, "nonsarcastic_temp.txt");
 			// makeProcessedFile(devPath,"dev_temp.txt");
 			// makeProcessedFile(filename,testoutput);
 		} catch (Exception e) {

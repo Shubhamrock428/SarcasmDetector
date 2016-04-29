@@ -9,9 +9,22 @@ def readFile(file):
     	content = f.readlines()
     return content
 
-
+'''
 content_sarcastic=readFile("../../../process-tweet/tags_sarcastic_word.txt")
 content_nonsarcastic=readFile("../../../process-tweet/tags_nonsarcastic_word.txt")
+'''
+'''
+content_sarcastic=readFile("../../../process-tweet/tags_sarcastic_senti_pos.txt")
+content_nonsarcastic=readFile("../../../process-tweet/tags_nonsarcastic_senti_pos.txt")
+'''
+'''
+content_sarcastic=readFile("../../../process-tweet/tags_sarcastic_nb.txt")
+content_nonsarcastic=readFile("../../../process-tweet/tags_nonsarcastic_nb.txt")
+'''
+
+content_sarcastic=readFile("../../../process-tweet/tags_sarcastic_senti_cnt.txt")
+content_nonsarcastic=readFile("../../../process-tweet/tags_nonsarcastic_senti_cnt.txt")
+
 tp=0
 tn=0
 fp=0

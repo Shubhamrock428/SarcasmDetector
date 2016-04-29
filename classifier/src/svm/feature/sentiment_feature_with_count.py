@@ -3,6 +3,7 @@ import json,string,codecs
 from sklearn import svm
 from sklearn.externals import joblib
 from sklearn.feature_extraction import *
+from sklearn.linear_model import *
 
 model={}
 
@@ -86,7 +87,7 @@ def main_fn():
 	
 	
 	clf = svm.SVC()
-	# clf = SGDClassifier(loss="hinge", penalty="l2")
+	#clf = SGDClassifier(loss="hinge", penalty="l2")
 	
 	 
 	clf.fit(sar_features_arr + non_features_arr, observations)

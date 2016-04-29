@@ -3,6 +3,7 @@ import json
 from sklearn import svm
 from sklearn.externals import joblib
 from sklearn.feature_extraction import *
+from sklearn.linear_model import *
 
 
 def flattenListOfLists(lst):
@@ -81,8 +82,8 @@ def main_fn() :
     print len(sar_features_arr) + len(non_features_arr) 
     print len(observations)
     
-    clf = svm.SVC()
-    # clf = SGDClassifier(loss="hinge", penalty="l2")
+    #clf = svm.SVC()
+    clf = SGDClassifier(loss="hinge", penalty="l1")
      
     clf.fit(sar_features_arr + non_features_arr, observations)
     
