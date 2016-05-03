@@ -1,5 +1,5 @@
-# Team-MissionNLP
-CSCI-544 Final Project
+# Sarcasm Detector in Hindi
+CSCI-544 Final Project by Team 4 - Team MissionNLP
 
 #Introduction
 
